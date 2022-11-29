@@ -22,36 +22,6 @@ namespace WebAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CustomerEntityOrderEntity", b =>
-                {
-                    b.Property<int>("CustomersId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrdersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CustomersId", "OrdersId");
-
-                    b.HasIndex("OrdersId");
-
-                    b.ToTable("CustomerEntityOrderEntity");
-                });
-
-            modelBuilder.Entity("OrderEntityProductEntity", b =>
-                {
-                    b.Property<int>("OrdersId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrdersId", "ProductsId");
-
-                    b.HasIndex("ProductsId");
-
-                    b.ToTable("OrderEntityProductEntity");
-                });
-
             modelBuilder.Entity("WebAPI.Models.Entities.CustomerEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -81,19 +51,26 @@ namespace WebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("CustomerEntityId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DueDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("ProductEntityId")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerEntityId");
+
+                    b.HasIndex("ProductEntityId");
 
                     b.ToTable("Orders");
                 });
@@ -143,34 +120,15 @@ namespace WebAPI.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("CustomerEntityOrderEntity", b =>
+            modelBuilder.Entity("WebAPI.Models.Entities.OrderEntity", b =>
                 {
                     b.HasOne("WebAPI.Models.Entities.CustomerEntity", null)
-                        .WithMany()
-                        .HasForeignKey("CustomersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebAPI.Models.Entities.OrderEntity", null)
-                        .WithMany()
-                        .HasForeignKey("OrdersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("OrderEntityProductEntity", b =>
-                {
-                    b.HasOne("WebAPI.Models.Entities.OrderEntity", null)
-                        .WithMany()
-                        .HasForeignKey("OrdersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerEntityId");
 
                     b.HasOne("WebAPI.Models.Entities.ProductEntity", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Orders")
+                        .HasForeignKey("ProductEntityId");
                 });
 
             modelBuilder.Entity("WebAPI.Models.Entities.ProductEntity", b =>
@@ -184,9 +142,19 @@ namespace WebAPI.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("WebAPI.Models.Entities.CustomerEntity", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
             modelBuilder.Entity("WebAPI.Models.Entities.ProductCategoryEntity", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("WebAPI.Models.Entities.ProductEntity", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

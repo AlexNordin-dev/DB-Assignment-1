@@ -9,9 +9,9 @@ namespace WebAPI.Models
         public int Id { get; set; }
 
         public DateTime OrderDate { get; set; }
-        public DateTime DueDate { get; set; }            
+                  
         public int CustomerId { get; set; }
         public int ProductId { get; set; }
-        public ICollection<ProductEntity> Products { get; set; }
+        
     }
 }

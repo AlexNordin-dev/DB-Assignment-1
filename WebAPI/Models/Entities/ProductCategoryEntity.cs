@@ -1,7 +1,10 @@
-﻿namespace WebAPI.Models.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebAPI.Models.Entities
 {
     public class ProductCategoryEntity
     {
+        [Key]
         public int Id { get; set; }
         public string CategoryName { get; set; } = null!;
 

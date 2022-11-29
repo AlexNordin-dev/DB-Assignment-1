@@ -40,7 +40,7 @@ namespace OrderManagement.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("OrderManagement.Models.Entities.OrderEntity", b =>
@@ -70,7 +70,7 @@ namespace OrderManagement.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("OrderManagement.Models.Entities.ProductEntity", b =>
@@ -93,7 +93,7 @@ namespace OrderManagement.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("OrderManagement.Models.Entities.OrderEntity", b =>

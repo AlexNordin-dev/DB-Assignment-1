@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
                 {
                     
                     OrderDate = DateTime.Now,
-                    DueDate = DateTime.Now.AddDays(30),
+                    
                     
                     CustomerId = model.CustomerId,
                     ProductId = model.ProductId,
@@ -36,8 +36,8 @@ namespace WebAPI.Controllers
 
                 };
 
-                foreach (var product in model.Products)
-                    orderEntity.Products.Add(new ProductEntity { Id = product.Id });
+                //foreach (var product in model.Products)
+                //    orderEntity.Products.Add(new ProductEntity { Id = product.Id });
 
                 _context.Add(orderEntity);
 
@@ -70,8 +70,9 @@ namespace WebAPI.Controllers
                     Price= items.Price,
                 });
 
+            return new OkObjectResult(products);
             return new OkObjectResult(customers);
-            
+
         }
     }
 }

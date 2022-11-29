@@ -85,7 +85,7 @@ namespace OrderManagement.Pages
             {
                 
                 OrderDate = DateTime.Now,
-                DueDate = DateTime.Now,
+               
                 CustomerId = customer.Value,
                 ProductId = product.Value           
                 
