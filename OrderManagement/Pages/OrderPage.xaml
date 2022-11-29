@@ -1,0 +1,36 @@
+﻿<Page x:Class="OrderManagement.Pages.OrderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:OrderManagement.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="OrderPage">
+
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Margin="20">
+                <StackPanel>
+                    <TextBlock Text="Customer" Margin="0 0 0 5" />
+                    <ComboBox Name="cb_customer" Margin="0 0 0 5" DisplayMemberPath="Key" />
+                    <TextBlock Text="Product" Margin="0 0 0 5" />
+                    <ComboBox Name="cb_product" Margin="0 0 0 5" DisplayMemberPath="Key" />
+                    <Button Name="btn_AddProductToList" Content="Add To List" Click="btn_AddProductToList_Click"/>
+                    <Button Name="btn_order_save" Click="btn_OrderSave_Click" Content="Save" Padding="3" />
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1" Margin="20">
+                <StackPanel>
+                    <TextBlock Text="Produkt list" Margin="0 0 0 5"/>
+                    <ListBox Name="lb_addOrderToList" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
